@@ -1,0 +1,7 @@
+#!/bin/bash
+
+make install \
+    AOLSERVER=$SITEROOT/exe/aolserver \
+    POSTGRES=$SITEROOT/exe/postgresql \
+    POSTGRESQL=$SITEROOT/exe/postgresql \
+    OPENSSL=$SITEROOT/exe/openssl

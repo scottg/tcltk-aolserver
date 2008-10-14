@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# --openssldir needs to point to the same location as the top-level
+# installation, or your man pages and other stuff will be placed into a
+# subdirectory instead of where the man pages should really be.
+
+# threads - is necessary because we use openssl to compile into multithreaded
+# applications.
+
+./config \
+     threads \
+	 shared \
+	 no-engines \
+	 no-hw \
+     --prefix=$SITEROOT/exe/openssl \
+     --openssldir=$SITEROOT/exe/openssl/etc/openssl
+
+make install

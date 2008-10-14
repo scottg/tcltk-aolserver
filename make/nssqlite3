@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#export TCLSH_CMD=$SITEROOT/bin/tclsh
+#export TCLLIBPATH="$SITEROOT/lib/tcl8.5 $SITEROOT/lib"
+
+make install \
+    AOLSERVER=$SITEROOT/exe/aolserver \
+    SQLITE3_PREFIX=$SITEROOT/exe/sqlite3

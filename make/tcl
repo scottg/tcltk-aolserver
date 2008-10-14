@@ -1,0 +1,21 @@
+#!/bin/bash
+
+MAJOR_VERSION=$(echo $VERSION | cut -f1 -d'.')
+MINOR_VERSION=$(echo $VERSION | cut -f2 -d'.')
+PATCH_LEVEL=$(echo $VERSION | cut -f3 -d'.')
+MAJOR_MINOR_VERSION=$(echo $VERSION | cut -f1-2 -d'.')
+
+cd unix
+
+./configure \
+    --prefix=$SITEROOT/exe/$NAME \
+    --exec-prefix=$SITEROOT/exe/$NAME \
+    --enable-threads \
+    --disable-corefoundation \
+    --enable-symbols
+
+make
+make install
+
+/bin/ln $SITEROOT/exe/tcl/bin/tclsh${MAJOR_MINOR_VERSION} $SITEROOT/exe/tcl/bin/tclsh
+

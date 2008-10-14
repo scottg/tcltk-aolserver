@@ -1,0 +1,8 @@
+#!/bin/bash
+
+./configure \
+    --prefix=${SITEROOT}/exe/readline
+
+make install
+
+
