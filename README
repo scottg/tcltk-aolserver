@@ -1,0 +1,14 @@
+AOLserver Build for Tcl/Tk 2008 Conference
+------------------------------------------
+
+This distribution contains the sources and build scripts to compile and install
+AOLserver and supporting software and modules on most Unix type systems (sorry,
+no Windows here)..
+
+All files and software reside in the directory you are currently in, so no
+worry about files being installed all over your system. Still, you should *not*
+be root when working here and am not liable for any problems you have with this
+kit.
+
+
+
