@@ -5,4 +5,4 @@
 
 make install \
     AOLSERVER=$SITEROOT/exe/aolserver \
-    SQLITE3_PREFIX=$SITEROOT/exe/sqlite3
+    SQLITE3_PREFIX=$SITEROOT/exe/sqlite
