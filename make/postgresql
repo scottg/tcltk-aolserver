@@ -20,11 +20,12 @@
 	--with-docdir=$SITEROOT/exe/postgresql/doc \
     --with-includes=$SITEROOT/exe/postgresql/include \
     --with-libraries=$SITEROOT/exe/postgresql/lib \
+	--without-readline \
+	--without-zlib \
     --with-tcl \
     --with-tclconfig=$SITEROOT/exe/tcl/lib \
     --without-odbc \
-    --without-tk \
-    --without-openssl
+    --without-tk
 
 # To compile with openssl (need to find a way to point to the /local/lib
 # version; I think this will attempt to use the system's version).
