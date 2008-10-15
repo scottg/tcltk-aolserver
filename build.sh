@@ -11,13 +11,14 @@ source config.sh
 
 /bin/mkdir -p exe
 /bin/mkdir -p var/db
+/bin/mkdir -p var/src
 
 #
 # Unpack and build each source package.
 #
 
 for SOURCE in $SOURCES; do
-    cd $SITEROOT/src
+    cd $SITEROOT/var/src
 	NAME=`echo $SOURCE | cut -f1 -d'-'`
 	VERSION=`echo $SOURCE | cut -f2 -d'-'`
     if [ -d $SITEROOT/exe/$NAME ]; then
@@ -26,9 +27,9 @@ for SOURCE in $SOURCES; do
     fi
     echo "$SOURCE - compiling"
     /bin/rm -rf $SOURCE
-    echo "tar xjf ${SOURCE}.tar.bz2 -- $PWD"
-    tar xjf ${SOURCE}.tar.bz2
-    cd $SITEROOT/src/$SOURCE
+    echo "tar xjf $SITEROOT/src/${SOURCE}.tar.bz2 -- $PWD"
+    tar xjf $SITEROOT/src/${SOURCE}.tar.bz2
+    cd $SITEROOT/var/src/$SOURCE
 	source $SITEROOT/make/$NAME
 done
 
