@@ -9,6 +9,9 @@ fi
 
 source config.sh
 
+#export TCLSH_CMD="$SITEROOT/exe/tcl/bin/tclsh8.4"
+#export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4"
+export LD_LIBRARY_PATH=/lib:/usr/lib:$SITEROOT/exe/tcl/lib
 
 case $1 in
 	init)
