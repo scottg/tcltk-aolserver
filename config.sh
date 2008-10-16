@@ -36,8 +36,8 @@ export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4 $SITEROOT/exe/tcl/lib"
 export NSROOT=$SITEROOT/exe/aolserver
 
 export NS_HTTPPORT=8080
-export NS_HTTPSPORT=8443
-export NS_HTTPSPORT_PKI=8444
+export NS_HTTPSPORT=8001
+export NS_HTTPSPORT_PKI=8002
 export NS_ADDRESS=127.0.0.1
 export NS_HOSTNAME=localhost
 export NS_HOSTNAME=$NS_ADDRESS
@@ -76,7 +76,6 @@ export PSQLARGS="--set ON_ERROR_STOP=1"
 
 export SOURCES="
     tcl-8.4.19
-    openssl-0.9.8i
     postgresql-8.3.4
     sqlite-3.6.3
     aolserver-cvs

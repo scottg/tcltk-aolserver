@@ -2,4 +2,4 @@
 
 make install \
     AOLSERVER=$SITEROOT/exe/aolserver \
-    OPENSSL=$SITEROOT/exe/openssl
+    OPENSSL=/usr/lib
