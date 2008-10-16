@@ -1,0 +1,63 @@
+#!/bin/bash -e
+#
+# Copyright 2008 by Scott S. Goodwin
+
+if [ ! -f "config.sh" ]; then
+    echo "You aren't in the directory where build.sh is."
+    exit 1
+fi
+
+source config.sh
+
+PGSTOP="$PGBIN/pg_ctl -w stop -D $PGDATA"
+PGSTART="$PGBIN/pg_ctl -w start -D $PGDATA -l $SITEROOT/postgres.log"
+
+case $1 in
+	init)
+		# See PGDATA/pg_hba.conf for information.
+		$PGBIN/initdb -D $PGDATA --locale=C --encoding=UTF-8 -L $PGSHARE -A trust
+		#/bin/ln -s -f $SITEROOT/postgresql.conf $PGDATA/postgresql.conf
+		#/bin/ln -s -f $SITEROOT/pg_hba.conf $PGDATA/pg_hba.conf
+		;;
+	start)
+		$PGSTART
+		;;
+	stop)
+		$PGSTOP
+		;;
+	create)
+		$PGBIN/createdb $PGDATABASE
+		$PGBIN/createlang pltcl $PGDATABASE
+		$PGBIN/createlang plpgsql $PGDATABASE
+		;;
+	drop)
+		$PGBIN/dropdb $PGDATABASE
+		;;
+	destroy)
+		$PGSTOP
+		/bin/rm -r $PGDATA
+		;;
+	#dump)
+	#	/bin/mkdir -p $ONEMIS/tmp/dbdump
+	#	$PGBIN/pg_dump --format=p --disable-triggers --schema-only $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.schema.sql
+	#	$PGBIN/pg_dump --format=p --disable-triggers --data-only   $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.data.sql
+	#	$PGBIN/pg_dump --format=p --disable-triggers               $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.complete.sql
+	#	;;
+	#load)
+	#	$PGBIN/psql -f $ONEMIS/tmp/dbdump/${PGDATABASE}.complete.sql
+	#	;;
+	status)
+		$PGBIN/pg_ctl status -D $PGDATA
+		;;
+	hup)
+		$PGBIN/pg_ctl reload -D $PGDATA
+		;;
+	#get)
+	#	# XXX FIX AFTER WE'VE MOVED TO OPERATIONS - paths are wrong for new way, but work with old
+	#	###rsync -atv --rsh="ssh -p 8443 -l onemis" --delete onemis.nasa.gov:/home/onemis/sql/DB/dump /home/onemis/sql/DB
+	#	;;
+	*)
+		echo "$0: unknown subcommand: $@"
+		;;
+esac
+

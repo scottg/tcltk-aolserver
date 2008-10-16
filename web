@@ -1,0 +1,46 @@
+#!/bin/bash -e
+#
+# Copyright 2008 by Scott S. Goodwin
+
+if [ ! -f "config.sh" ]; then
+    echo "You aren't in the directory where build.sh is."
+    exit 1
+fi
+
+source config.sh
+
+
+case $1 in
+	init)
+        if [ ! -d "$NSROOT/servers/$SITENAME" ]; then
+            /bin/cp -r $NSROOT/servers/server1 $NSROOT/servers/$SITENAME
+        fi
+		;;
+
+	start)
+        if [ ! -L "$NSROOT/servers/$SITENAME" ]; then
+            /bin/rm -rf $NSROOT/servers/$SITENAME
+            /bin/ln -s $SITEROOT/tcltk $NSROOT/servers
+            #/bin/cp -r $NSROOT/servers/server1 $NSROOT/servers/$SITENAME
+        fi
+        $NSROOT/bin/nsd $2 -t $SITEROOT/nsd.tcl -u $SITEOWNER -g $SITEGROUP -s $SITENAME -b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
+		;;
+
+	gdb)
+        gdb -x gdbinit $NSROOT/bin/nsd
+		;;
+
+	#stop)
+	#	if [ -f $ONEMIS/logs/nspid.onemis ]; then
+	#		kill -TERM $(cat $ONEMIS/install/log/nspid.onemis)
+	#	elif [ -f $ONEMIS/logs/nspid.onemis ]; then
+	#		 kill -TERM $(cat $ONEMIS/install/log/nspid.onemis)
+	#	else
+	#		echo "Could not find $ONEMIS/logs/nspid.onemis"
+	#	fi
+	#	;;
+	*)
+		echo "$0: unknown subcommand: $@"
+		;;
+esac
+
