@@ -38,9 +38,13 @@ export NSROOT=$SITEROOT/exe/aolserver
 export NS_HTTPPORT=8000
 export NS_HTTPSPORT=8001
 export NS_HTTPSPORT_PKI=8002
-export NS_ADDRESS=127.0.0.1
-export NS_HOSTNAME=localhost
-export NS_HOSTNAME=$NS_ADDRESS
+if [ "$(uname)" == "Darwin" ]; then
+	export NS_ADDRESS=127.0.0.1
+	export NS_HOSTNAME=localhost
+else
+	export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' -f2 | head -1)
+	export NS_HOSTNAME=$(hostname)
+fi
 export NS_SERVERLOG=$SITEROOT/nsd.log
 export NS_ACCESSLOG=$SITEROOT/access.log
 export NS_MAILHOST=smtp.hq.nasa.gov
