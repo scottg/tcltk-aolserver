@@ -35,7 +35,7 @@ export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4 $SITEROOT/exe/tcl/lib"
 
 export NSROOT=$SITEROOT/exe/aolserver
 
-export NS_HTTPPORT=8080
+export NS_HTTPPORT=8000
 export NS_HTTPSPORT=8001
 export NS_HTTPSPORT_PKI=8002
 export NS_ADDRESS=127.0.0.1
