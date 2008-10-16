@@ -75,7 +75,6 @@ export PSQLARGS="--set ON_ERROR_STOP=1"
 #
 
 export SOURCES="
-    readline-5.2a
     tcl-8.4.19
     openssl-0.9.8i
     postgresql-8.3.4
