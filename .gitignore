@@ -1,5 +1,6 @@
 exe
 var
+*.log
 *.o
 *.a
 *.so
