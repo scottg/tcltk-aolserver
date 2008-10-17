@@ -1,5 +1,6 @@
 AOLserver Build for Tcl/Tk 2008 Conference
 ------------------------------------------
+Copyright 2008 by Scott S. Goodwin
 
 This distribution contains the sources and build scripts to compile and install
 AOLserver and supporting software and modules on most Unix type systems (sorry,
@@ -10,6 +11,21 @@ worry about files being installed all over your system. Still, you should *not*
 be root when working here and am not liable for any problems you have with this
 kit.
 
+Three step process:
+
+./build.sh
+./db init
+./web start -f
+
+Then connect to the IP address with your browser on ports 8000 (http) and 8001
+(https). If you're on a Mac, 127.0.0.1 will be the server's address; otherwise
+it should be the main interface's IP.
+
+All of the binaries get installed under the 'exe' subdirectory. You can remove
+the 'exe' and 'var' directories and start over at any time.
+
+Note that you'll likely see some compile or install errors for static libraries
+for nsopenssl etc.
 
 Ubuntu:
 -------
