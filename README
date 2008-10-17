@@ -11,4 +11,12 @@ be root when working here and am not liable for any problems you have with this
 kit.
 
 
+Ubuntu:
+-------
+libreadline5
+libreadline5-dev
+zlib1g
+openssl
+libssl-dev
+
 
