@@ -9,6 +9,11 @@ fi
 
 source config.sh
 
+if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
+    /usr/bin/env SCRIPTON="yes" script build.log ./build.sh
+    exit
+fi
+
 /bin/mkdir -p exe
 /bin/mkdir -p var/db
 /bin/mkdir -p var/src

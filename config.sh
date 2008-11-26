@@ -16,6 +16,7 @@ fi
 #
 
 export NS_DEBUG="-f"
+export BUILD_DEBUG="yes"
 
 #
 # Site Settings
