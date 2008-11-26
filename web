@@ -26,7 +26,7 @@ case $1 in
             /bin/ln -s $SITEROOT/tcltk $NSROOT/servers
             #/bin/cp -r $NSROOT/servers/server1 $NSROOT/servers/$SITENAME
         fi
-        $NSROOT/bin/nsd $2 -t $SITEROOT/nsd.tcl -u $SITEOWNER -g $SITEGROUP -s $SITENAME -b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
+        $NSROOT/bin/nsd $NS_DEBUG -t $SITEROOT/nsd.tcl -u $SITEOWNER -g $SITEGROUP -s $SITENAME -b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
 		;;
 
 	gdb)

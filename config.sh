@@ -11,6 +11,13 @@ if [ ! -f "config.sh" ]; then
 fi
 
 #
+# If set to -f, nsd will start in the foreground. If set to blank, it will start
+# as a daemon.
+#
+
+export NS_DEBUG="-f"
+
+#
 # Site Settings
 #
 
