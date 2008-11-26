@@ -23,9 +23,15 @@ FILES="
 	tcl/bin/tclsh8.4
 "
 
+FAILED=0
 for FILE in $FILES; do
 	if [ ! -e "$SITEROOT/exe/$FILE" ]; then
 		echo "FAILED: $FILE is not in place"
+        FAILED=1
 	fi
 done
+
+if [ "$FAILED" = "0" ]; then
+    echo "Everything appears to be in order."
+fi
 
