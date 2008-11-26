@@ -10,6 +10,11 @@ fi
 source config.sh
 
 if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
+    if [ -z "$(type -p script)" ]; then
+        echo "WARNING: BUILD_DEBUG is set to 'yes', but the script executable cannot be found on your OS"
+        echo "Continuing anyway in 5 seconds"
+        sleep 5
+    fi
     /usr/bin/env SCRIPTON="yes" script build.log ./build.sh
     exit
 fi
