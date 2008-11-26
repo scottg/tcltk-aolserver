@@ -11,11 +11,19 @@ worry about files being installed all over your system. Still, you should *not*
 be root when working here and am not liable for any problems you have with this
 kit.
 
-Three step process:
+Four step process:
 
 ./build.sh
 ./db init
-./web start -f
+./db start
+./web start
+
+If BUILD_DEBUG="yes" in config.sh then all of the build output will be captured
+in the build.log file; set to anything else and build.sh doesn't bother
+capturing the action.
+
+If NS_DEBUG="yes" in config.sh then 'web start' will start nsd in the
+foreground; anything else will cause it to start as a normal daemon.
 
 Then connect to the IP address with your browser on ports 8000 (http) and 8001
 (https). If you're on a Mac, 127.0.0.1 will be the server's address; otherwise
