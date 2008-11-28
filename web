@@ -29,15 +29,13 @@ case $1 in
         gdb -x gdbinit $NSROOT/bin/nsd
 		;;
 
-	#stop)
-	#	if [ -f $ONEMIS/logs/nspid.onemis ]; then
-	#		kill -TERM $(cat $ONEMIS/install/log/nspid.onemis)
-	#	elif [ -f $ONEMIS/logs/nspid.onemis ]; then
-	#		 kill -TERM $(cat $ONEMIS/install/log/nspid.onemis)
-	#	else
-	#		echo "Could not find $ONEMIS/logs/nspid.onemis"
-	#	fi
-	#	;;
+	stop)
+		if [ -f $NSD_LOG ]; then
+			kill -TERM $(cat $NSD_LOG)
+		else
+			echo "Could not find $NSD_LOG"
+		fi
+		;;
 	*)
 		echo "$0: unknown subcommand: $@"
 		;;

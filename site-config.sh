@@ -40,6 +40,7 @@ export SITEGROUP=$(/usr/bin/id -gn)
 
 export NSROOT=$SITEROOT/exe/aolserver
 
+export NSD_LOG=$SITEROOT/exe/aolserver/log/nspid.${SITENAME}
 export NS_HTTPPORT=8000
 export NS_HTTPSPORT=8001
 export NS_HTTPSPORT_PKI=8002
