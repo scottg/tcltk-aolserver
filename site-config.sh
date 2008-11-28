@@ -15,7 +15,7 @@ fi
 # it will start as a daemon.
 #
 
-export NS_DEBUG="-f"
+export NS_DEBUG=""
 
 #
 # Site-specific Settings
@@ -50,8 +50,8 @@ else
 	export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' -f2 | head -1)
 	export NS_HOSTNAME=$(hostname)
 fi
-export NS_SERVERLOG=$SITEROOT/nsd.log
-export NS_ACCESSLOG=$SITEROOT/access.log
+export NS_SERVERLOG=$SITEROOT/logs/nsd.log
+export NS_ACCESSLOG=$SITEROOT/logs/access.log
 export NS_MAILHOST=smtp.hq.nasa.gov
 export NS_MODULES=$SITEROOT/modules
 export NS_PAGES=$SITEROOT/pages

@@ -15,7 +15,7 @@ if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
         echo "Continuing anyway in 5 seconds"
         sleep 5
     fi
-    /usr/bin/env SCRIPTON="yes" script build.log ./build.sh
+    /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log ./build.sh
     exit
 fi
 
