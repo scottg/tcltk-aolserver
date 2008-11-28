@@ -12,19 +12,13 @@ source config.sh
 PGSTOP="$PGBIN/pg_ctl -w stop -D $PGDATA"
 PGSTART="$PGBIN/pg_ctl -w start -D $PGDATA -l $SITEROOT/postgres.log"
 
-if [ ! -f "$PGDATA/PG_VERSION" ] && [ "$1" != "init" ]; then
-    echo "You need to run '$0 init' first"
-    exit 1
-fi
-
 case $1 in
-	init)
-		# See PGDATA/pg_hba.conf for information.
-		$PGBIN/initdb -D $PGDATA --locale=C --encoding=UTF-8 -L $PGSHARE -A trust
-		#/bin/ln -s -f $SITEROOT/postgresql.conf $PGDATA/postgresql.conf
-		#/bin/ln -s -f $SITEROOT/pg_hba.conf $PGDATA/pg_hba.conf
-		;;
 	start)
+		if [ ! -f "$PGDATA/PG_VERSION" ] && [ "$1" != "init" ]; then
+			echo "Initializing PGDATA area (only performed once)"
+			echo ""
+			$PGBIN/initdb -D $PGDATA --locale=C --encoding=UTF-8 -L $PGSHARE -A trust
+		fi
 		$PGSTART
 		;;
 	stop)
