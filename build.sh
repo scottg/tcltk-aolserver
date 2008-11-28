@@ -9,6 +9,11 @@ fi
 
 source config.sh
 
+/bin/mkdir -p exe
+/bin/mkdir -p logs
+/bin/mkdir -p var/db
+/bin/mkdir -p var/src
+
 if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
     if [ -z "$(type -p script)" ]; then
         echo "WARNING: BUILD_DEBUG is set to 'yes', but the script executable cannot be found on your OS"
@@ -18,10 +23,6 @@ if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
     /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log ./build.sh
     exit
 fi
-
-/bin/mkdir -p exe
-/bin/mkdir -p var/db
-/bin/mkdir -p var/src
 
 #
 # Unpack and build each source package.
