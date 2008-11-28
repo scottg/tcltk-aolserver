@@ -22,10 +22,6 @@ export BUILD_DEBUG="yes"
 #
 
 export SITEROOT=$PWD
-#export SITENAME="tcltk"
-#export SITEDESC="Tcl/Tk Conference 2008"
-#export SITEOWNER=$(/usr/bin/id -un)
-#export SITEGROUP=$(/usr/bin/id -gn)
 
 #
 # Tcl Settings
