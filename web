@@ -8,15 +8,23 @@ cd $(dirname $0)
 source config.sh
 source site-config.sh
 
+if [ ! -z "$2" ]; then
+	source $2/config.sh
+fi
+
+if [ -z "$SITENAME" ]; then
+	source default/config.sh
+fi
+
 case $1 in
 	start)
-        if [ ! -L "$NSROOT/servers/$SITENAME" ]; then
-            /bin/rm -rf $NSROOT/servers/$SITENAME
-            /bin/ln -s $SITEROOT/tcltk $NSROOT/servers
-        fi
-        $NSROOT/bin/nsd \
+		if [ ! -L "$NSROOT/servers/$SITENAME" ]; then
+			/bin/rm -rf $NSROOT/servers/$SITENAME
+			/bin/ln -s $SITEROOT/$SITENAME $NSROOT/servers
+		fi
+		$NSROOT/bin/nsd \
 			$NS_DEBUG \
-			-t $SITEROOT/tcltk/nsd.tcl \
+			-t $SITEROOT/$SITENAME/nsd.tcl \
 			-u $SITEOWNER \
 			-g $SITEGROUP \
 			-s $SITENAME \
@@ -24,7 +32,7 @@ case $1 in
 		;;
 
 	gdb)
-        gdb -x gdbinit $NSROOT/bin/nsd
+		 gdb -x gdbinit $NSROOT/bin/nsd
 		;;
 
 	stop)
@@ -34,6 +42,7 @@ case $1 in
 			echo "Could not find $NSD_LOG"
 		fi
 		;;
+
 	*)
 		echo "$0: unknown subcommand: $@"
 		;;

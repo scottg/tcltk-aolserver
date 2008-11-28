@@ -5,11 +5,6 @@ if [ "$(id -un)" == "root" ]; then
     exit 1
 fi
 
-if [ ! -f "config.sh" ]; then
-    echo "You aren't in the directory where build.sh is."
-    exit 1
-fi
-
 #
 # If NS_DEBUG is set to -f, nsd will start in the foreground. If set to blank,
 # it will start as a daemon.
@@ -21,8 +16,6 @@ export NS_DEBUG="-f"
 # Site-specific Settings
 #
 
-export SITENAME="tcltk"
-export SITEDESC="Tcl/Tk Conference 2008"
 export SITEOWNER=$(/usr/bin/id -un)
 export SITEGROUP=$(/usr/bin/id -gn)
 
@@ -54,8 +47,8 @@ fi
 export NS_SERVERLOG=$SITEROOT/logs/nsd.log
 export NS_ACCESSLOG=$SITEROOT/logs/access.log
 export NS_MAILHOST=smtp.hq.nasa.gov
-export NS_MODULES=$SITEROOT/modules
-export NS_PAGES=$SITEROOT/pages
+#export NS_MODULES=$SITEROOT/modules
+#export NS_PAGES=$SITEROOT/pages
 
 #
 # PostgreSQL Settings
@@ -66,7 +59,7 @@ export PGSHARE=$SITEROOT/exe/postgresql/share
 
 export PGHOST=
 export PGPORT=5432
-export PGDBNAME=$SITENAME
+#export PGDBNAME=$SITENAME
 export PGDATA=$SITEROOT/var/db
 
 export PSQLARGS="--set ON_ERROR_STOP=1"
