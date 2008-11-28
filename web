@@ -8,25 +8,21 @@ if [ ! -f "config.sh" ]; then
 fi
 
 source config.sh
-
-#export TCLSH_CMD="$SITEROOT/exe/tcl/bin/tclsh8.4"
-#export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4"
-export LD_LIBRARY_PATH=/lib:/usr/lib:$SITEROOT/exe/tcl/lib
+source site-config.sh
 
 case $1 in
-	init)
-        if [ ! -d "$NSROOT/servers/$SITENAME" ]; then
-            /bin/cp -r $NSROOT/servers/server1 $NSROOT/servers/$SITENAME
-        fi
-		;;
-
 	start)
         if [ ! -L "$NSROOT/servers/$SITENAME" ]; then
             /bin/rm -rf $NSROOT/servers/$SITENAME
             /bin/ln -s $SITEROOT/tcltk $NSROOT/servers
-            #/bin/cp -r $NSROOT/servers/server1 $NSROOT/servers/$SITENAME
         fi
-        $NSROOT/bin/nsd $NS_DEBUG -t $SITEROOT/nsd.tcl -u $SITEOWNER -g $SITEGROUP -s $SITENAME -b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
+        $NSROOT/bin/nsd \
+			$NS_DEBUG \
+			-t $SITEROOT/tcltk/nsd.tcl \
+			-u $SITEOWNER \
+			-g $SITEGROUP \
+			-s $SITENAME \
+			-b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
 		;;
 
 	gdb)
