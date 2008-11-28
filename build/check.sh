@@ -2,16 +2,13 @@
 
 # Copyright 2008 by Scott S. Goodwin
 
-if [ ! -f "config.sh" ]; then
-    echo "You aren't in the directory where build.sh is."
-    exit 1
-fi
+# We always want to be in top level directory
+cd $(dirname $0)/..
 
 source config.sh
 
 #
-# Confirm that all files are in place. Files are prefixed later with
-# $SITEROOT/exe.
+# Confirm that all files are in place.
 #
 
 FILES="
@@ -26,7 +23,7 @@ FILES="
 FAILED=0
 for FILE in $FILES; do
 	if [ ! -e "$SITEROOT/exe/$FILE" ]; then
-		echo "FAILED: $FILE is not in place"
+		echo "FAILED: $SITEROOT/exe/$FILE is not in place"
         FAILED=1
 	fi
 done

@@ -5,10 +5,12 @@ if [ "$(id -un)" == "root" ]; then
     exit 1
 fi
 
-if [ ! -f "config.sh" ]; then
-    echo "You aren't in the directory where build.sh is."
-    exit 1
-fi
+#MYLOCATION="${PWD}/${BASH_ARGV[0]}"
+#echo "MYLOC1 == $MYLOCATION"
+#MYLOCATION="${MYLOCATION%/*}"
+#echo "MYLOC2 == $MYLOCATION"
+
+export SITEROOT=$PWD
 
 #
 # If BUILD_DEBUG is set to -f, nsd will start in the foreground. If set to
@@ -16,12 +18,6 @@ fi
 #
 
 export BUILD_DEBUG="yes"
-
-#
-# Site Settings
-#
-
-export SITEROOT=$PWD
 
 #
 # Tcl Settings

@@ -15,7 +15,7 @@ fi
 # it will start as a daemon.
 #
 
-export NS_DEBUG=""
+export NS_DEBUG="-f"
 
 #
 # Site-specific Settings

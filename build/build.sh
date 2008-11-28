@@ -2,17 +2,15 @@
 
 # Copyright 2008 by Scott S. Goodwin
 
-if [ ! -f "config.sh" ]; then
-    echo "You aren't in the directory where build.sh is."
-    exit 1
-fi
+# We always want to be in top level directory
+cd $(dirname $0)/..
 
 source config.sh
 
-/bin/mkdir -p exe
-/bin/mkdir -p logs
-/bin/mkdir -p var/db
-/bin/mkdir -p var/src
+/bin/mkdir -p $SITEROOT/exe
+/bin/mkdir -p $SITEROOT/logs
+/bin/mkdir -p $SITEROOT/var/db
+/bin/mkdir -p $SITEROOT/var/src
 
 if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
     if [ -z "$(type -p script)" ]; then
@@ -20,7 +18,7 @@ if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
         echo "Continuing anyway in 5 seconds"
         sleep 5
     fi
-    /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log ./build.sh
+    /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log $SITEROOT/build/build.sh
     exit
 fi
 
@@ -38,9 +36,9 @@ for SOURCE in $SOURCES; do
     fi
     echo "$SOURCE - compiling"
     /bin/rm -rf $SOURCE
-    echo "tar xjf $SITEROOT/src/${SOURCE}.tar.bz2 -- $PWD"
-    tar xjf $SITEROOT/src/${SOURCE}.tar.bz2
+    echo "tar xjf $SITEROOT/build/src/${SOURCE}.tar.bz2 -- $PWD"
+    tar xjf $SITEROOT/build/src/${SOURCE}.tar.bz2
     cd $SITEROOT/var/src/$SOURCE
-	source $SITEROOT/make/$NAME
+	source $SITEROOT/build/make/$NAME
 done
 

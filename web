@@ -2,10 +2,8 @@
 #
 # Copyright 2008 by Scott S. Goodwin
 
-if [ ! -f "config.sh" ]; then
-    echo "You aren't in the directory where build.sh is."
-    exit 1
-fi
+# We always want to be in top level directory
+cd $(dirname $0)
 
 source config.sh
 source site-config.sh
