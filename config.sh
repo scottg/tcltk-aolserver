@@ -12,6 +12,24 @@ fi
 export SITEROOT=$PWD
 
 #
+# Set SITEPATH based on whether a site name was passed in the second argument.
+#
+
+if [ -z "$2" ]; then
+	export SITENAME=default
+else
+	export SITENAME=$2
+fi
+
+if [ -d "$SITENAME" ]; then
+	export SITEPATH=$SITENAME
+elif [ -d "../$SITENAME" ]; then
+	export SITEPATH="../$SITENAME"
+else
+	echo "Cannot find $SITENAME directory here or in ../$SITENAME"
+	exit 1
+fi
+#
 # Owner and Group settings.
 #
 
