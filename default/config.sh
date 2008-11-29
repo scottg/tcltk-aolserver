@@ -3,6 +3,7 @@
 # of what is in site-config.sh
 #
 
-export SITENAME="default"
+export SITENAME=default
 export SITEDESC="Default Server"
 
+export PGDBNAME=default

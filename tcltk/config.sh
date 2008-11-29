@@ -3,6 +3,7 @@
 # of what is in site-config.sh
 #
 
-export SITENAME="tcltk"
+export SITENAME=tcltk
 export SITEDESC="Tcl/Tk Conference 2008"
 
+export PGDBNAME=tcltk

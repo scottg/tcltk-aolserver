@@ -71,7 +71,6 @@ export PGSHARE=$SITEROOT/exe/postgresql/share
 
 export PGHOST=
 export PGPORT=5432
-#export PGDBNAME=$SITENAME
 export PGDATA=$SITEROOT/var/db
 
 export PSQLARGS="--set ON_ERROR_STOP=1"
