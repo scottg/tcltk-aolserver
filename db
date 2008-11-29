@@ -7,6 +7,14 @@ cd $(dirname $0)
 
 source config.sh
 
+if [ ! -z "$2" ]; then
+	source $2/config.sh
+fi
+
+if [ -z "$SITENAME" ]; then
+	source default/config.sh
+fi
+
 PGSTOP="$PGBIN/pg_ctl -w stop -D $PGDATA"
 PGSTART="$PGBIN/pg_ctl -w start -D $PGDATA -l $SITEROOT/logs/postgres.log"
 
@@ -23,12 +31,14 @@ case $1 in
 		$PGSTOP
 		;;
 	create)
-		$PGBIN/createdb $PGDATABASE
-		$PGBIN/createlang pltcl $PGDATABASE
-		$PGBIN/createlang plpgsql $PGDATABASE
+		echo $PGDBNAME
+		$PGBIN/createdb $PGDBNAME
+		$PGBIN/createlang pltcl $PGDBNAME
+		$PGBIN/createlang plpgsql $PGDBNAME
 		;;
 	drop)
-		$PGBIN/dropdb $PGDATABASE
+		echo $PGDBNAME
+		$PGBIN/dropdb $PGDBNAME
 		;;
 	destroy)
 		$PGSTOP
@@ -36,12 +46,12 @@ case $1 in
 		;;
 	#dump)
 	#	/bin/mkdir -p $ONEMIS/tmp/dbdump
-	#	$PGBIN/pg_dump --format=p --disable-triggers --schema-only $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.schema.sql
-	#	$PGBIN/pg_dump --format=p --disable-triggers --data-only   $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.data.sql
-	#	$PGBIN/pg_dump --format=p --disable-triggers               $PGDATABASE > $ONEMIS/tmp/dbdump/${PGDATABASE}.complete.sql
+	#	$PGBIN/pg_dump --format=p --disable-triggers --schema-only $PGDBNAME > $ONEMIS/tmp/dbdump/${PGDBNAME}.schema.sql
+	#	$PGBIN/pg_dump --format=p --disable-triggers --data-only   $PGDBNAME > $ONEMIS/tmp/dbdump/${PGDBNAME}.data.sql
+	#	$PGBIN/pg_dump --format=p --disable-triggers               $PGDBNAME > $ONEMIS/tmp/dbdump/${PGDBNAME}.complete.sql
 	#	;;
 	#load)
-	#	$PGBIN/psql -f $ONEMIS/tmp/dbdump/${PGDATABASE}.complete.sql
+	#	$PGBIN/psql -f $ONEMIS/tmp/dbdump/${PGDBNAME}.complete.sql
 	#	;;
 	status)
 		$PGBIN/pg_ctl status -D $PGDATA
