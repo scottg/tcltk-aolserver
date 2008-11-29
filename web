@@ -10,10 +10,8 @@ source $SITEPATH/config.sh
 
 case $1 in
 	start)
-		if [ ! -L "$NSROOT/servers/$SITENAME" ]; then
-			/bin/rm -rf $NSROOT/servers/$SITENAME
-			/bin/ln -s $SITEPATH $NSROOT/servers
-		fi
+		/bin/rm -f $NSROOT/servers/$SITENAME
+		/bin/ln -s $PWD/$SITEPATH $NSROOT/servers
 		$NSROOT/bin/nsd \
 			$NS_DEBUG \
 			-t $SITEPATH/nsd.tcl \
