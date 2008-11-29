@@ -6,7 +6,6 @@
 cd $(dirname $0)
 
 source config.sh
-source site-config.sh
 
 PGSTOP="$PGBIN/pg_ctl -w stop -D $PGDATA"
 PGSTART="$PGBIN/pg_ctl -w start -D $PGDATA -l $SITEROOT/logs/postgres.log"

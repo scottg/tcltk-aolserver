@@ -13,13 +13,12 @@ kit.
 
 Four step process:
 
-./build.sh
-./db init
+./build/build.sh
 ./db start
-./web start
+./web start <server name>
 
 If BUILD_DEBUG="yes" in config.sh then all of the build output will be captured
-in the build.log file; set to anything else and build.sh doesn't bother
+in logs/build.log file; set to anything else and build.sh doesn't bother
 capturing the action.
 
 If NS_DEBUG="yes" in config.sh then 'web start' will start nsd in the
@@ -30,7 +29,7 @@ Then connect to the IP address with your browser on ports 8000 (http) and 8001
 it should be the main interface's IP.
 
 All of the binaries get installed under the 'exe' subdirectory. You can remove
-the 'exe' and 'var' directories and start over at any time.
+the 'exe','logs' and 'var' directories and start over at any time.
 
 Note that you'll likely see some compile or install errors for static libraries
 for nsopenssl etc.

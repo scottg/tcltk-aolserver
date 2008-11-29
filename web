@@ -6,7 +6,6 @@
 cd $(dirname $0)
 
 source config.sh
-source site-config.sh
 
 if [ ! -z "$2" ]; then
 	source $2/config.sh
