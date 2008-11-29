@@ -15,6 +15,7 @@ Four step process:
 
 ./build/build.sh
 ./db start
+./db create <database name>
 ./web start <server name>
 
 If BUILD_DEBUG="yes" in config.sh then all of the build output will be captured
