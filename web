@@ -11,7 +11,7 @@ source $SITEPATH/config.sh
 case $1 in
 	start)
 		/bin/rm -f $NSROOT/servers/$SITENAME
-		echo "Linking $SITENAME -> $SITEPATH"
+		echo "Linking $SITEPATH -> $NSROOT/server/$SITENAME"
 		/bin/ln -s $SITEPATH $NSROOT/servers
 		$NSROOT/bin/nsd \
 			$NS_DEBUG \
