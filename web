@@ -15,7 +15,7 @@ case $1 in
 		/bin/ln -s $SITEPATH $NSROOT/servers
 		$NSROOT/bin/nsd \
 			$NS_DEBUG \
-			-t $SITEPATH/nsd.tcl \
+			-t $SITEROOT/config/nsd.tcl \
 			-u $SITEOWNER \
 			-g $SITEGROUP \
 			-s $SITENAME \

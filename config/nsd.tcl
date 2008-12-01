@@ -30,7 +30,7 @@ ns_log   notice   "homedir == $homedir"
 set pageroot           ${homedir}/servers/${servername}/pages
 #set moduleroot         $env(NS_MODULES)
 set moduleroot         ${homedir}/servers/${servername}/modules
-set configdir		   $env(SITEROOT)/$env(SITENAME)
+set configdir		   $env(SITEROOT)/config
 set directoryfile      index.adp,index.htm
 
 #set ext [info sharedlibextension]
@@ -188,13 +188,13 @@ ns_param systemenvironment false; # Copies environment from nsd start shell
 # Load Other Module Configurations
 #
 
-ns_log notice "Loading nsopenssl configuration"
+ns_log notice "Loading nsopenssl configuration from $configdir/nsopenssl.tcl"
 source $configdir/nsopenssl.tcl
 
-ns_log notice "Loading nspostgres configuration"
+ns_log notice "Loading nspostgres configuration from $configdir/nspostgres.tcl"
 source $configdir/nspostgres.tcl
 
-ns_log notice "Loading nssqlite3 configuration"
+ns_log notice "Loading nssqlite3 configuration from $configdir/nssqlite3.tcl"
 source $configdir/nssqlite3.tcl
 
 ################################################################################
