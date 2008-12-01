@@ -20,6 +20,7 @@ if [ -z "$2" ]; then
 else
 	export SITENAME=$2
 fi
+echo "Site Name is $SITENAME"
 
 if [ -d "$SITENAME" ]; then
 	export SITEPATH=$SITENAME
@@ -90,7 +91,7 @@ export PGSHARE=$SITEROOT/exe/postgresql/share
 export PGHOST=
 export PGPORT=5432
 export PGDATA=$SITEROOT/var/db
-
+export PGDBNAME=$SITENAME
 export PSQLARGS="--set ON_ERROR_STOP=1"
     # "--quiet"
     # "--no-align"
