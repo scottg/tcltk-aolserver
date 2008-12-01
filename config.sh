@@ -24,7 +24,7 @@ fi
 if [ -d "$SITENAME" ]; then
 	export SITEPATH=$SITENAME
 elif [ -d "../$SITENAME" ]; then
-	export SITEPATH="../$SITENAME"
+	export SITEPATH="$(cd ../$SITENAME; echo $PWD)"
 else
 	echo "Cannot find $SITENAME directory here or in ../$SITENAME"
 	exit 1
