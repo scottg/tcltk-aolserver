@@ -14,9 +14,15 @@ kit.
 Four step process:
 
 ./build/build.sh
-./db start
-./db create <database name>
-./web start <server name>
+./db start <sitename>
+./db create <sitename>
+./web start <sitename>
+
+The sitename is optional -- if not specified, it will use the 'default' server
+configuration that exists within this project. If you do specify a sitename,
+there must be a directory of that name at the top level of this distribution
+(where the default server config is) or one level up, as a sibling to this
+distribution's top level directory.
 
 If BUILD_DEBUG="yes" in config.sh then all of the build output will be captured
 in logs/build.log file; set to anything else and build.sh doesn't bother
@@ -35,8 +41,11 @@ the 'exe','logs' and 'var' directories and start over at any time.
 Note that you'll likely see some compile or install errors for static libraries
 for nsopenssl etc.
 
-Ubuntu:
--------
+
+
+
+Ubuntu Requirements:
+--------------------
 libreadline5
 libreadline5-dev
 zlib1g
