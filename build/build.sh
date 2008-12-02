@@ -40,5 +40,10 @@ for SOURCE in $SOURCES; do
     tar xjf $SITEROOT/build/src/${SOURCE}.tar.bz2
     cd $SITEROOT/var/src/$SOURCE
 	source $SITEROOT/build/make/$NAME
+
+	# Source config.sh after each package is built to pick up anything new,
+	# like Tcl paths 
+	cd $SITEROOT
+	source config.sh
 done
 

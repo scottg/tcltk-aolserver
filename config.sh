@@ -58,9 +58,17 @@ export NS_DEBUG="-f"
 # Tcl Settings
 #
 
-export TCLBIN=$SITEROOT/exe/tcl/bin
-export TCLSH_CMD="$TCLBIN/tclsh8.4"
-export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4 $SITEROOT/exe/tcl/lib"
+if [ -f $SITEROOT/exe/tcl/lib/tclConfig.sh ]; then
+	source $SITEROOT/exe/tcl/lib/tclConfig.sh
+	export TCLBIN=$SITEROOT/exe/tcl/bin
+	export TCLSH_CMD="$TCLBIN/tclsh${TCL_VERSION}"
+	export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl${TCL_VERSION} $SITEROOT/exe/tcl/lib"
+else
+	echo "Local Tcl version not installed yet. Can't set Tcl paths."
+	export TCLBIN=
+	export TCLSH_CMD=
+	export TCLLIBPATH=
+fi
 
 #
 # AOLserver Settings
@@ -105,16 +113,16 @@ export PSQLARGS="--set ON_ERROR_STOP=1"
 #
 
 # Adjust PATH
-if [[ $PATH != *$SITEROOT/exe/tcl/bin* ]] ; then
+if [[ $PATH != *$SITEROOT/exe/tcl/bin* ]] && [ -d $SITEROOT/exe/tcl/bin ]; then
     echo "Adding $SITEROOT/exe/tcl/bin to PATH"
     export PATH=$SITEROOT/exe/tcl/bin:$PATH
     echo "PATH=$PATH"
 fi
 
 # Adjust $DYLD_LIBRARY_PATH
-if [[ $DYLD_LIBRARY_PATH != *$SITEROOT/exe/tcl/lib* ]] ; then
+if [[ $DYLD_LIBRARY_PATH != *$SITEROOT/exe/tcl/lib* ]] && [ ! -z "$TCLLIBPATH" ] ; then
     echo "Adding local Tcl libraries to DYLD_LIBRARY_PATH"
-    export DYLD_LIBRARY_PATH=$SITEROOT/exe/tcl/lib:$SITEROOT/exe/tcl/lib/tcl8.4/sqlite3:$SITEROOT/exe/sqlite/lib:$DYLD_LIBRARY_PATH
+    export DYLD_LIBRARY_PATH=$SITEROOT/exe/tcl/lib:$SITEROOT/exe/tcl/lib/tcl${TCL_VERSION}/sqlite3:$SITEROOT/exe/sqlite/lib:$DYLD_LIBRARY_PATH
     echo "DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH"
 fi
 export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH

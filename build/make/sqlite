@@ -1,8 +1,5 @@
 #!/bin/bash
 
-export TCLSH_CMD="$SITEROOT/exe/tcl/bin/tclsh8.4"
-export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl8.4 $SITEROOT/exe/tcl/lib"
-
 ./configure \
     --prefix=$SITEROOT/exe/sqlite \
 	--exec-prefix=$SITEROOT/exe/sqlite \

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#export TCLSH_CMD=$SITEROOT/bin/tclsh
-#export TCLLIBPATH="$SITEROOT/lib/tcl8.5 $SITEROOT/lib"
-
 ./configure \
 	--enable-thread-safety \
     --prefix=$SITEROOT/exe/postgresql \
