@@ -38,6 +38,7 @@ NEWMANPATH=$(echo $NEWMANPATH | /usr/bin/sed 's/^://' | /usr/bin/sed 's+//+/+g')
 # Export the paths
 
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+export PATH=$PATH:~/local/bin:/local/bin:/opt/local/bin:/opt/local/sbin
 
 [ ! -z "$NEWBINPATH" ] && export PATH=$NEWBINPATH:$PATH
 
