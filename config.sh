@@ -48,11 +48,14 @@ export SITEGROUP=$(/usr/bin/id -gn)
 export BUILD_DEBUG="yes"
 
 #
-# If NS_DEBUG is set to -f, nsd will start in the foreground. If set to blank,
-# it will start as a daemon.
+# If the DEBUG file exists, NS_DEBUG is set to -f so that nsd will start in the
+# foreground.
 #
 
-export NS_DEBUG="-f"
+export NS_DEBUG=""
+if [ -f $SITEROOT/DEBUG ]; then
+	export NS_DEBUG="-f"
+fi
 
 #
 # Tcl Settings

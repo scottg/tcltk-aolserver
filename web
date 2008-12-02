@@ -22,8 +22,17 @@ case $1 in
 			-b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
 		;;
 
-	gdb)
-		 gdb -x gdbinit $NSROOT/bin/nsd
+	debug)
+		/bin/rm -f $NSROOT/servers/$SITENAME
+		echo "Linking $SITEPATH -> $NSROOT/server/$SITENAME"
+		/bin/ln -s $SITEPATH $NSROOT/servers
+		gdb -x gdbinit --args $NSROOT/bin/nsd \
+			$NS_DEBUG \
+			-t $SITEROOT/config/nsd.tcl \
+			-u $SITEOWNER \
+			-g $SITEGROUP \
+			-s $SITENAME \
+			-b $NS_ADDRESS:$NS_HTTPPORT,$NS_ADDRESS:$NS_HTTPSPORT,$NS_ADDRESS:$NS_HTTPSPORT_PKI
 		;;
 
 	stop)
