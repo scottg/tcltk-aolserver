@@ -133,7 +133,7 @@ export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
 export SOURCES="
     tcl-8.4.19
     postgresql-8.3.4
-    sqlite-3.6.3
+    sqlite-3.6.6.2
     aolserver-cvs
     nspostgres-cvs
     nsopenssl-cvs
