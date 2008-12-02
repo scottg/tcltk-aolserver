@@ -17,7 +17,7 @@ FILES="
 	aolserver/bin/nspostgres.so
 	aolserver/bin/nssqlite3.so
 	postgresql/bin/initdb
-	tcl/bin/tclsh8.4
+	tcl/bin/tclsh
 "
 
 FAILED=0
