@@ -28,12 +28,15 @@ elif [ -d "../$SITENAME" ]; then
 	export SITEPATH="$(cd ../$SITENAME; echo $PWD)"
 else
 	echo "Cannot find $SITENAME directory here or in ../$SITENAME"
+	sleep 5;
 	exit 1
 fi
+
 #
 # Owner and Group settings.
 #
 
+export SITEDESC="=== NOT SET ==="
 export SITEOWNER=$(/usr/bin/id -un)
 export SITEGROUP=$(/usr/bin/id -gn)
 
@@ -102,18 +105,19 @@ export PSQLARGS="--set ON_ERROR_STOP=1"
 #
 
 # Adjust PATH
-#if [[ $PATH != *$SITEROOT/bin* ]] ; then
-#    echo "Adding $SITEROOT/bin to PATH"
-#    export PATH=$SITEROOT/bin:$PATH
-#    echo "PATH=$PATH"
-#fi
+if [[ $PATH != *$SITEROOT/exe/tcl/bin* ]] ; then
+    echo "Adding $SITEROOT/exe/tcl/bin to PATH"
+    export PATH=$SITEROOT/exe/tcl/bin:$PATH
+    echo "PATH=$PATH"
+fi
 
 # Adjust $DYLD_LIBRARY_PATH
-#if [[ $DYLD_LIBRARY_PATH != *$SITEROOT/lib* ]] ; then
-#    echo "Adding $SITEROOT/lib to DYLD_LIBRARY_PATH"
-#    export DYLD_LIBRARY_PATH=$SITEROOT/lib:$DYLD_LIBRARY_PATH
-#    echo "DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH"
-#fi
+if [[ $DYLD_LIBRARY_PATH != *$SITEROOT/exe/tcl/lib* ]] ; then
+    echo "Adding local Tcl libraries to DYLD_LIBRARY_PATH"
+    export DYLD_LIBRARY_PATH=$SITEROOT/exe/tcl/lib:$SITEROOT/exe/tcl/lib/tcl8.4/sqlite3:$SITEROOT/exe/sqlite/lib:$DYLD_LIBRARY_PATH
+    echo "DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH"
+fi
+export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
 
 # Adjust LD_LIBRARY_PATH
 #if [[ $LD_LIBRARY_PATH != *$SITEROOT/lib* ]] ; then
