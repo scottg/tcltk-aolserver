@@ -8,8 +8,8 @@ MAJOR_MINOR_VERSION=$(echo $VERSION | cut -f1-2 -d'.')
 cd unix
 
 ./configure \
-    --prefix=$SITEROOT/exe/$NAME \
-    --exec-prefix=$SITEROOT/exe/$NAME \
+    --prefix=$EXE/$NAME \
+    --exec-prefix=$EXE/$NAME \
     --enable-threads \
     --disable-corefoundation \
     --enable-symbols
@@ -17,5 +17,5 @@ cd unix
 make
 make install
 
-/bin/ln $SITEROOT/exe/tcl/bin/tclsh${MAJOR_MINOR_VERSION} $SITEROOT/exe/tcl/bin/tclsh
+/bin/ln $EXE/tcl/bin/tclsh${MAJOR_MINOR_VERSION} $EXE/tcl/bin/tclsh
 

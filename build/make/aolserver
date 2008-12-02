@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ -f nsconfig.tcl ]; then
-    $TCLSH_CMD nsconfig.tcl -install $SITEROOT/exe/$NAME -debug
+    $TCLSH_CMD nsconfig.tcl -install $EXE/$NAME -debug
 else
     ./configure \
-        --prefix=$SITEROOT/exe/aolserver \
-        --with-tcl=$SITEROOT/exe/tcl/lib
+        --prefix=$EXE/aolserver \
+        --with-tcl=$EXE/tcl/lib
 fi
 
 make

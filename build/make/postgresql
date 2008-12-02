@@ -2,17 +2,17 @@
 
 ./configure \
 	--enable-thread-safety \
-    --prefix=$SITEROOT/exe/postgresql \
-	--datadir=$SITEROOT/exe/postgresql/share \
-	--sysconfdir=$SITEROOT/exe/postgresql/etc \
-	--libdir=$SITEROOT/exe/postgresql/lib \
-	--includedir=$SITEROOT/exe/postgresql/include \
-	--mandir=$SITEROOT/exe/postgresql/man \
-	--with-docdir=$SITEROOT/exe/postgresql/doc \
+    --prefix=$EXE/postgresql \
+	--datadir=$EXE/postgresql/share \
+	--sysconfdir=$EXE/postgresql/etc \
+	--libdir=$EXE/postgresql/lib \
+	--includedir=$EXE/postgresql/include \
+	--mandir=$EXE/postgresql/man \
+	--with-docdir=$EXE/postgresql/doc \
     --with-openssl \
 	--without-zlib \
     --with-tcl \
-    --with-tclconfig=$SITEROOT/exe/tcl/lib \
+    --with-tclconfig=$EXE/tcl/lib \
     --without-tk \
     --without-odbc
 

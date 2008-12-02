@@ -1,5 +1,5 @@
 #!/bin/bash
 
 make install \
-    AOLSERVER=$SITEROOT/exe/aolserver \
-    SQLITE3_PREFIX=$SITEROOT/exe/sqlite
+    AOLSERVER=$EXE/aolserver \
+    SQLITE3_PREFIX=$EXE/sqlite

@@ -12,7 +12,7 @@
 	 shared \
 	 no-engines \
 	 no-hw \
-     --prefix=$SITEROOT/exe/openssl \
-     --openssldir=$SITEROOT/exe/openssl/etc/openssl
+     --prefix=$EXE/openssl \
+     --openssldir=$EXE/openssl/etc/openssl
 
 make install

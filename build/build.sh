@@ -7,7 +7,7 @@ cd $(dirname $0)/..
 
 source config.sh
 
-/bin/mkdir -p $SITEROOT/exe
+/bin/mkdir -p $EXE
 /bin/mkdir -p $SITEROOT/logs
 /bin/mkdir -p $SITEROOT/var/db
 /bin/mkdir -p $SITEROOT/var/src
@@ -30,8 +30,8 @@ for SOURCE in $SOURCES; do
     cd $SITEROOT/var/src
 	NAME=`echo $SOURCE | cut -f1 -d'-'`
 	VERSION=`echo $SOURCE | cut -f2 -d'-'`
-    if [ -d $SITEROOT/exe/$NAME ]; then
-        echo "$SOURCE already installed in $SITEROOT/exe/$NAME"
+    if [ -d $EXE/$NAME ]; then
+        echo "$SOURCE already installed in $EXE/$NAME"
         continue
     fi
     echo "$SOURCE - compiling"

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ./configure \
-    --prefix=$SITEROOT/exe/sqlite \
-	--exec-prefix=$SITEROOT/exe/sqlite \
-	--with-tcl=$SITEROOT/exe/tcl/lib \
+    --prefix=$EXE/sqlite \
+	--exec-prefix=$EXE/sqlite \
+	--with-tcl=$EXE/tcl/lib \
     --enable-threadsafe
 
 make install

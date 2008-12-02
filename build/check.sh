@@ -22,8 +22,8 @@ FILES="
 
 FAILED=0
 for FILE in $FILES; do
-	if [ ! -e "$SITEROOT/exe/$FILE" ]; then
-		echo "FAILED: $SITEROOT/exe/$FILE is not in place"
+	if [ ! -e "$EXE/$FILE" ]; then
+		echo "FAILED: $EXE/$FILE is not in place"
         FAILED=1
 	fi
 done

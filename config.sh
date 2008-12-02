@@ -10,6 +10,7 @@ fi
 #
 
 export SITEROOT=$PWD
+export EXE=$SITEROOT/exe
 
 #
 # Set SITEPATH based on whether a site name was passed in the second argument.
@@ -61,11 +62,11 @@ fi
 # Tcl Settings
 #
 
-if [ -f $SITEROOT/exe/tcl/lib/tclConfig.sh ]; then
-	source $SITEROOT/exe/tcl/lib/tclConfig.sh
-	export TCLBIN=$SITEROOT/exe/tcl/bin
+if [ -f $EXE/tcl/lib/tclConfig.sh ]; then
+	source $EXE/tcl/lib/tclConfig.sh
+	export TCLBIN=$EXE/tcl/bin
 	export TCLSH_CMD="$TCLBIN/tclsh${TCL_VERSION}"
-	export TCLLIBPATH="$SITEROOT/exe/tcl/lib/tcl${TCL_VERSION} $SITEROOT/exe/tcl/lib"
+	export TCLLIBPATH="$EXE/tcl/lib/tcl${TCL_VERSION} $EXE/tcl/lib"
 else
 	echo "Local Tcl version not installed yet. Can't set Tcl paths."
 	export TCLBIN=
@@ -77,8 +78,8 @@ fi
 # AOLserver Settings
 #
 
-export NSROOT=$SITEROOT/exe/aolserver
-export NSD_LOG=$SITEROOT/exe/aolserver/log/nspid.${SITENAME}
+export NSROOT=$EXE/aolserver
+export NSD_LOG=$EXE/aolserver/log/nspid.${SITENAME}
 export NS_HTTPPORT=8000
 export NS_HTTPSPORT=8001
 export NS_HTTPSPORT_PKI=8002
@@ -99,8 +100,8 @@ export NS_MAILHOST=smtp.hq.nasa.gov
 # PostgreSQL Settings
 #
 
-export PGBIN=$SITEROOT/exe/postgresql/bin
-export PGSHARE=$SITEROOT/exe/postgresql/share
+export PGBIN=$EXE/postgresql/bin
+export PGSHARE=$EXE/postgresql/share
 
 export PGHOST=
 export PGPORT=5432
@@ -115,27 +116,7 @@ export PSQLARGS="--set ON_ERROR_STOP=1"
 # Library and Manual Path Settings
 #
 
-# Adjust PATH
-if [[ $PATH != *$SITEROOT/exe/tcl/bin* ]] && [ -d $SITEROOT/exe/tcl/bin ]; then
-    echo "Adding $SITEROOT/exe/tcl/bin to PATH"
-    export PATH=$SITEROOT/exe/tcl/bin:$PATH
-    echo "PATH=$PATH"
-fi
-
-# Adjust $DYLD_LIBRARY_PATH
-if [[ $DYLD_LIBRARY_PATH != *$SITEROOT/exe/tcl/lib* ]] && [ ! -z "$TCLLIBPATH" ] ; then
-    echo "Adding local Tcl libraries to DYLD_LIBRARY_PATH"
-    export DYLD_LIBRARY_PATH=$SITEROOT/exe/tcl/lib:$SITEROOT/exe/tcl/lib/tcl${TCL_VERSION}/sqlite3:$SITEROOT/exe/sqlite/lib:$DYLD_LIBRARY_PATH
-    echo "DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH"
-fi
-export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
-
-# Adjust LD_LIBRARY_PATH
-#if [[ $LD_LIBRARY_PATH != *$SITEROOT/lib* ]] ; then
-#    echo "Adding $SITEROOT/lib to LD_LIBRARY_PATH"
-#    export LD_LIBRARY_PATH=$SITEROOT/lib:$LD_LIBRARY_PATH
-#    echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
-#fi
+source paths.sh
 
 #
 # Sources to Compile and Install
@@ -150,3 +131,4 @@ export SOURCES="
     nsopenssl-cvs
     nssqlite3-cvs
 "
+
