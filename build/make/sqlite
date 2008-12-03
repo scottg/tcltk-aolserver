@@ -1,9 +1,15 @@
 #!/bin/bash
 
+# Note that libtclsqlite gets installed by the tcl installer into Tcl's lib area.
+
 ./configure \
-    --prefix=$EXE/sqlite \
-	--exec-prefix=$EXE/sqlite \
-	--with-tcl=$EXE/tcl/lib \
-    --enable-threadsafe
+	--enable-threadsafe \
+	--enable-debug \
+	--enable-gcov \
+	\
+	--prefix=$EXE/sqlite \
+	\
+	--with-tcl=$EXE/tcl/lib
 
 make install
+

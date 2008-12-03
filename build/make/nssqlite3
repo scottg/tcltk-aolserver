@@ -1,5 +1,5 @@
 #!/bin/bash
 
 make install \
-    AOLSERVER=$EXE/aolserver \
-    SQLITE3_PREFIX=$EXE/sqlite
+	AOLSERVER=$EXE/aolserver \
+	SQLITE3_PREFIX=$EXE/sqlite

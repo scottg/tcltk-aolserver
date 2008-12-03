@@ -1,7 +1,7 @@
 #!/bin/bash
 
 make install \
-    AOLSERVER=$EXE/aolserver \
-    POSTGRES=$EXE/postgresql \
-    POSTGRESQL=$EXE/postgresql \
-    OPENSSL=$EXE/openssl
+	AOLSERVER=$EXE/aolserver \
+	POSTGRES=$EXE/postgresql \
+	POSTGRESQL=$EXE/postgresql \
+	OPENSSL=$EXE/openssl

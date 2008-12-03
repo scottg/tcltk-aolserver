@@ -8,11 +8,13 @@
 # applications.
 
 ./config \
-     threads \
-	 shared \
-	 no-engines \
-	 no-hw \
-     --prefix=$EXE/openssl \
-     --openssldir=$EXE/openssl/etc/openssl
+	threads \
+	shared \
+	\
+	no-engines \
+	no-hw \
+	\
+	--prefix=$EXE/openssl \
+	--openssldir=$EXE/openssl/etc/openssl
 
 make install

@@ -2,18 +2,24 @@
 
 ./configure \
 	--enable-thread-safety \
-    --prefix=$EXE/postgresql \
+	\
+	--prefix=$EXE/postgresql \
 	--datadir=$EXE/postgresql/share \
 	--sysconfdir=$EXE/postgresql/etc \
 	--libdir=$EXE/postgresql/lib \
 	--includedir=$EXE/postgresql/include \
 	--mandir=$EXE/postgresql/man \
+	\
 	--with-docdir=$EXE/postgresql/doc \
+	\
     --with-openssl \
+	\
 	--without-zlib \
+	\
     --with-tcl \
     --with-tclconfig=$EXE/tcl/lib \
     --without-tk \
+	\
     --without-odbc
 
 make install

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ./configure \
-    --prefix=$EXE/readline
+	--prefix=$EXE/readline
 
 make install
 

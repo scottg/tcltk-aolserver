@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [ -f nsconfig.tcl ]; then
-    $TCLSH_CMD nsconfig.tcl -install $EXE/$NAME -debug
+	$TCLSH_CMD nsconfig.tcl -install $EXE/$NAME -debug
 else
-    ./configure \
-        --prefix=$EXE/aolserver \
-        --with-tcl=$EXE/tcl/lib
+	./configure \
+		--prefix=$EXE/aolserver \
+		--with-tcl=$EXE/tcl/lib
 fi
 
 make

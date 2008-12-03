@@ -8,11 +8,13 @@ MAJOR_MINOR_VERSION=$(echo $VERSION | cut -f1-2 -d'.')
 cd unix
 
 ./configure \
-    --prefix=$EXE/$NAME \
-    --exec-prefix=$EXE/$NAME \
-    --enable-threads \
-    --disable-corefoundation \
-    --enable-symbols
+	--enable-threads \
+	--enable-symbols \
+	\
+	--disable-corefoundation \
+	\
+	--prefix=$EXE/$NAME \
+	--exec-prefix=$EXE/$NAME
 
 make
 make install
