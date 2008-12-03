@@ -123,12 +123,16 @@ source paths.sh
 #
 
 export SOURCES="
-    tcl-8.5.5
-    postgresql-8.3.4
-    sqlite-3.6.6.2
-    aolserver-cvs
-    nspostgres-cvs
-    nsopenssl-cvs
-    nssqlite3-cvs
+	tcl-8.5.5
+
+	postgresql-8.3.4
+	pgtcl-1.5
+
+	sqlite-3.6.6.2
+
+	aolserver-cvs
+	nspostgres-cvs
+	nsopenssl-cvs
+	nssqlite3-cvs
 "
 

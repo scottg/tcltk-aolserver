@@ -1,0 +1,26 @@
+#!/bin/bash
+
+./configure \
+	--enable-threads \
+	--enable-shared \
+	--enable-symbols \
+	\
+	--prefix=$EXE/pgtcl \
+	--libdir=$EXE/pgtcl/lib \
+	\
+	--with-postgres-include=$EXE/postgresql/include \
+	--with-postgres-lib=$EXE/postgresql/lib \
+	\
+	--with-tclconfig=$EXE/tcl/lib \
+	\
+	--with-includes=$EXE/postgresql/include \
+	--with-libraries=$EXE/postgresql/lib 
+
+# To compile with openssl (need to find a way to point to the /local/lib
+# version; I think this will attempt to use the system's version).
+	#--with-tcl=$EXE/tcl \
+    # --with-tclincludes=$EXE/tcl/include \
+
+#    --with-openssl
+
+make install
