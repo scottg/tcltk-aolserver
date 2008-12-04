@@ -10,6 +10,7 @@ PATHS="
 	tcl
 	postgresql
 	sqlite
+	pgtcl
 "
 
 unset NEWBINPATH
