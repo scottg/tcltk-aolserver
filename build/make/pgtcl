@@ -6,7 +6,6 @@
 	--enable-symbols \
 	\
 	--prefix=$EXE/pgtcl \
-	--libdir=$EXE/pgtcl/lib \
 	\
 	--with-postgres-include=$EXE/postgresql/include \
 	--with-postgres-lib=$EXE/postgresql/lib \
@@ -16,11 +15,27 @@
 	--with-includes=$EXE/postgresql/include \
 	--with-libraries=$EXE/postgresql/lib 
 
-# To compile with openssl (need to find a way to point to the /local/lib
-# version; I think this will attempt to use the system's version).
-	#--with-tcl=$EXE/tcl \
-    # --with-tclincludes=$EXE/tcl/include \
+# Usage:
+#
+# lappend auto_path "$env(EXE)/pgtcl/lib"
+# package require Pgtcl
+#
+# -or-
+#
+# load $env(EXE)/pgtcl/lib/pgtcl1.5/libpgtcl1.5g.dylib Pgtcl
 
-#    --with-openssl
+# By default, the actual lib binary is installed within Tcl's lib area. To make
+# the lib binary install somewhere else, use following, but be aware that you
+# have to figure out how your tcl script will find the library ('load' will
+# work, but 'package require' won't unless you add the new path to auto_path).
+#
+#	--libdir=$EXE/pgtcl/lib
 
+# To compile with openssl, use the following.  I think this will use the
+# system's version of openssl by default; to use a local version you'll have to
+# point to it (??? how?).
+#
+#	--with-openssl
+
+make
 make install

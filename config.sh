@@ -107,6 +107,7 @@ export PGHOST=
 export PGPORT=5432
 export PGDATA=$SITEROOT/var/db
 export PGDBNAME=$SITENAME
+export PGCLIENTENCODING=UTF-8
 export PSQLARGS="--set ON_ERROR_STOP=1"
     # "--quiet"
     # "--no-align"
