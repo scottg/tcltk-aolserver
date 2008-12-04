@@ -18,6 +18,7 @@ FILES="
 	aolserver/bin/nssqlite3.so
 	postgresql/bin/initdb
 	tcl/bin/tclsh
+	tcl/lib/pgtcl1.5/libpgtcl1.5g.dylib
 "
 
 FAILED=0
