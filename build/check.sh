@@ -19,6 +19,7 @@ FILES="
 	postgresql/bin/initdb
 	tcl/bin/tclsh
 	tcl/lib/pgtcl1.5/libpgtcl1.5g.dylib
+	tcl/lib/tls1.6/libtls1.6.dylib
 "
 
 FAILED=0

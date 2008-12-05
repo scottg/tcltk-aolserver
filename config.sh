@@ -125,6 +125,7 @@ source paths.sh
 
 export SOURCES="
 	tcl-8.5.5
+	tls-1.6
 
 	postgresql-8.3.4
 	pgtcl-1.5

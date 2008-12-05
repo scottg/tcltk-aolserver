@@ -1,0 +1,43 @@
+#!/bin/bash
+
+./configure \
+	--enable-threads \
+	--enable-shared \
+	--enable-symbols \
+	\
+	--prefix=$EXE/tls \
+	--with-tcl=$EXE/tcl/lib
+
+make
+make install
+
+
+# Usage:
+#
+# package require tls
+#
+# -or-
+#
+# load $env(EXE)/tcl/lib/tls1.6/libtls1.6.dylib tls
+
+# By default, the actual lib binary is installed within Tcl's lib area. To make
+# the lib binary install somewhere else, use following, but be aware that you
+# have to figure out how your tcl script will find the library (direct 'load'
+# will work, but 'package require' won't unless you add the new path to
+# auto_path).
+#
+#	--libdir=$EXE/tls/lib
+#
+# To update auto_path manually:
+#
+#	lappend auto_path "$env(EXE)/tls/lib" (optional)
+
+# This will use the system's version of openssl by default. To compile with the
+# local version of openssl, use the following.  
+#
+#	XXX FIX
+#	--with-openssl (???)
+#	--with-ssl-dir=???
+
+make
+make install
