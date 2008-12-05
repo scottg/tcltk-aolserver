@@ -1,0 +1,9 @@
+#!/bin/bash
+
+./configure \
+	--prefix=$EXE/tcllib \
+	--with-tcl=$EXE/tcl/lib
+
+make
+make install
+

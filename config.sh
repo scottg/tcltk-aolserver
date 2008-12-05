@@ -66,7 +66,13 @@ if [ -f $EXE/tcl/lib/tclConfig.sh ]; then
 	source $EXE/tcl/lib/tclConfig.sh
 	export TCLBIN=$EXE/tcl/bin
 	export TCLSH_CMD="$TCLBIN/tclsh${TCL_VERSION}"
-	export TCLLIBPATH="$EXE/tcl/lib/tcl${TCL_VERSION} $EXE/tcl/lib"
+	export TCLLIBPATH="
+		$EXE/tcl/lib/tcl${TCL_VERSION}
+		$EXE/tcl/lib
+		$EXE/tcllib/lib
+		$EXE/pgtcl/lib
+		$EXE/tls/lib
+	"
 else
 	echo "Local Tcl version not installed yet. Can't set Tcl paths."
 	export TCLBIN=
@@ -126,6 +132,7 @@ source paths.sh
 export SOURCES="
 	tcl-8.5.5
 	tls-1.6
+	tcllib-1.11
 
 	postgresql-8.3.4
 	pgtcl-1.5
