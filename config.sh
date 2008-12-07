@@ -89,13 +89,16 @@ export NSD_LOG=$EXE/aolserver/log/nspid.${SITENAME}
 export NS_HTTPPORT=8000
 export NS_HTTPSPORT=8001
 export NS_HTTPSPORT_PKI=8002
-if [ "$(uname)" == "Darwin" ]; then
+
+LOOPBACK=127.0.0.1
+NONROUTABLE=192.168.
+export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' -f2 | head -1)
+export NS_HOSTNAME=$(hostname)
+if [[ ! "$NS_ADDRESS" =~ "$NONROUTABLE" && ! "$NS_ADDRESS" =~ "$LOOPBACK" ]]; then
 	export NS_ADDRESS=127.0.0.1
-	export NS_HOSTNAME=localhost
-else
-	export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' -f2 | head -1)
-	export NS_HOSTNAME=$(hostname)
+	export NS_HOSTNAME=loopback
 fi
+
 export NS_SERVERLOG=$SITEROOT/logs/nsd.log
 export NS_ACCESSLOG=$SITEROOT/logs/access.log
 export NS_MAILHOST=smtp.hq.nasa.gov
