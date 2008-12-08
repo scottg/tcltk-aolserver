@@ -197,6 +197,11 @@ source $configdir/nspostgres.tcl
 ns_log notice "Loading nssqlite3 configuration from $configdir/nssqlite3.tcl"
 source $configdir/nssqlite3.tcl
 
+if { [file exists $moduleroot/server/nsd.tcl] } {
+	ns_log notice "Loading site-specific nsd.tcl from $moduleroot/server/nsd.tcl"
+	source $moduleroot/server/nsd.tcl
+}
+
 ################################################################################
 # Modules to load (was modules.tcl)
 
