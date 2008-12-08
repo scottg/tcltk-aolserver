@@ -96,7 +96,7 @@ export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' 
 export NS_HOSTNAME=$(hostname)
 if [[ ! "$NS_ADDRESS" =~ "$NONROUTABLE" && ! "$NS_ADDRESS" =~ "$LOOPBACK" ]]; then
 	export NS_ADDRESS=127.0.0.1
-	export NS_HOSTNAME=loopback
+	export NS_HOSTNAME=localhost
 fi
 
 export NS_SERVERLOG=$SITEROOT/logs/nsd.log
