@@ -1,32 +1,43 @@
 #!/bin/bash
 
 #
-# This dynamically resets path environment variables. It is meant to be sourced
-# by config.sh and no one else.
+# This dynamically resets path environment variables to ensure local copies
+# take precedence over system copies. It is meant to be sourced by config.sh
+# and no one else.
 #
-
-PATHS="
-    aolserver
-	tcl
-	postgresql
-	sqlite
-	pgtcl
-"
 
 unset NEWBINPATH
 unset NEWLIBPATH
 unset NEWMANPATH
 
+PATHS="
+	$EXE/aolserver
+	$EXE/tcl
+	$EXE/postgresql
+	$EXE/sqlite
+	$EXE/pgtcl
+
+	$HOME/local
+	$HOME/opt
+	/local
+	/opt/local
+	/opt
+	/
+	/usr
+	/usr/share
+	/usr/local/share
+"
+
 for P in $PATHS
 do
-    [ -d "$EXE/$P/bin" ] && NEWBINPATH=${NEWBINPATH}:$EXE/$P/bin
-    [ -d "$EXE/$P/sbin" ] && NEWBINPATH=${NEWBINPATH}:$EXE/$P/sbin
+    [ -d "$P/bin" ] && NEWBINPATH=${NEWBINPATH}:$P/bin
+    [ -d "$P/sbin" ] && NEWBINPATH=${NEWBINPATH}:$P/sbin
 
-    [ -d "$EXE/$P/lib" ] && NEWLIBPATH=${NEWLIBPATH}:$EXE/$P/lib
-    [ -d "$EXE/$P/lib/tcl$TCL_VERSION}" ] && NEWLIBPATH=${NEWLIBPATH}:$EXE/$P/lib/tcl$TCL_VERSION
+    [ -d "$P/lib" ] && NEWLIBPATH=${NEWLIBPATH}:$P/lib
+    [ -d "$P/lib/tcl$TCL_VERSION}" ] && NEWLIBPATH=${NEWLIBPATH}:$P/lib/tcl$TCL_VERSION
 
-    [ -d "$EXE/$P/man" ] && NEWMANPATH=${NEWBINPATH}:$EXE/$P/man
-    [ -d "$EXE/$P/share/man" ] && NEWMANPATH=${NEWBINPATH}:$EXE/$P/share/man
+    [ -d "$P/man" ] && NEWMANPATH=${NEWMANPATH}:$P/man
+    [ -d "$P/share/man" ] && NEWMANPATH=${NEWMANPATH}:$P/share/man
 
 done
 
@@ -38,10 +49,12 @@ NEWMANPATH=$(echo $NEWMANPATH | /usr/bin/sed 's/^://' | /usr/bin/sed 's+//+/+g')
 
 # Export the paths
 
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin
-export PATH=$PATH:~/local/bin:/local/bin:/opt/local/bin:/opt/local/sbin
+#export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+#export PATH=$PATH:~/local/bin:/local/bin:/opt/local/bin:/opt/local/sbin
 
-[ ! -z "$NEWBINPATH" ] && export PATH=$NEWBINPATH:$PATH
+#[ ! -z "$NEWBINPATH" ] && export PATH=$NEWBINPATH:$PATH
+
+export PATH=$NEWBINPATH
 
 export LD_LIBRARY_PATH=$NEWLIBPATH
 export DYLD_LIBRARY_PATH=$NEWLIBPATH
