@@ -188,22 +188,34 @@ ns_section "ns/server/${servername}/module/nscgi"
 # in this file.
 #
 
-ns_log notice "Loading nsopenssl configuration from $configdir/nsopenssl.tcl"
-source $configdir/nsopenssl.tcl
-
-ns_log notice "Loading nspostgres configuration from $configdir/nspostgres.tcl"
-source $configdir/nspostgres.tcl
-
-ns_log notice "Loading nssqlite3 configuration from $configdir/nssqlite3.tcl"
-source $configdir/nssqlite3.tcl
-
+# Load the site-specific global configuration
 if { [file exists $moduleroot/server/nsd.tcl] } {
 	ns_log notice "Loading site-specific nsd.tcl from $moduleroot/server/nsd.tcl"
 	source $moduleroot/server/nsd.tcl
 }
 
+# Configuration files to look for
+set configs {
+	nsopenssl.tcl
+	nspostgres.tcl
+	nssqlite3.tcl
+}
+
+foreach config $configs {
+	# Load the default configuration
+	if { [file exists "$configdir/$config"] } {
+		ns_log notice "Loading [lindex [split $config .] 0] default configuration from $configdir/$config"
+		source $configdir/$config
+	}
+	# Load the site-specific configuration
+	if { [file exists "$moduleroot/server/$config"] } {
+		ns_log notice "Loading [lindex [split $config .] 0] site-specific configuration from $moduleroot/server/$config"
+		source $moduleroot/server/$config
+	}
+}
+
 ################################################################################
-# Modules to load (was modules.tcl)
+# Modules to load
 
 ns_section "ns/server/${servername}/modules"
 	ns_param   nsdb            ${bindir}/nsdb${ext}
