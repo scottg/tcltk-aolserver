@@ -18,13 +18,18 @@ if [ "$BUILD_DEBUG" == "yes" ] && [ "$SCRIPTON" != "yes" ]; then
         echo "Continuing anyway in 5 seconds"
         sleep 5
     fi
-    /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log $SITEROOT/build/build.sh
+    /usr/bin/env SCRIPTON="yes" script $SITEROOT/logs/build.log $SITEROOT/build/build.sh $1
     exit
 fi
 
 #
-# Unpack and build each source package.
+# Unpack and build each source package unless the first argument is the name of
+# the source package you want to build.
 #
+
+if [ ! -z "$1" ]; then
+	SOURCES="$1"
+fi
 
 for SOURCE in $SOURCES; do
     cd $SITEROOT/var/src
