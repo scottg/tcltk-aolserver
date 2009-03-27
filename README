@@ -65,6 +65,8 @@ working, run the following two commands as root:
 # sysctl -w kern.sysv.shmall=65536
 # sysctl -w kern.sysv.shmmax=16777216
 
+(You can run this by sourcing config/pgshm.sh as root.)
+
 Add the following lines to /etc/sysctl.conf (create it if it doesn't exist) if
 you want these settings to take effect at boot time:
 
