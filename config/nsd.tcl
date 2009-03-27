@@ -84,6 +84,8 @@ ns_section "ns/mimetypes"
 	ns_param   ".adp_jk"       "text/html; charset=cp1252"
 	ns_param   ".adp_ut"       "text/html; charset=utf-8"
 	ns_param   ".adp"          "text/html; charset=utf-8"
+	ns_param   ".ico"          "image/vnd.microsoft.icon"
+	ns_param   ".css"          "text/css"
 
 ################################################################################
 # Virtual Server Configurations
@@ -108,7 +110,7 @@ ns_section "ns/server/${servername}"
 	ns_param   maxpost         [expr {50 * 1024000}]   ;# Maximum POST size, 50MB
 #	ns_param   maxline         ???       ;# ???
 
-	ns_param   enabletclpages  false     ;# Parse *.tcl files in pageroot.
+	ns_param   enabletclpages  true     ;# Parse *.tcl files in pageroot.
 #	ns_param   flushcontent    true      ;# ???
 #	ns_param   modsince        true;     ;# Check modified-since
 
@@ -132,6 +134,7 @@ ns_section "ns/server/${servername}/fastpath"
 ns_section "ns/server/${servername}/adp"
 #	ns_param   map             "*"  ;# This says parses everything as an ADP
 	ns_param   map             "/*.adp"  ;# Parse as an ADP
+	ns_param   map             "/*.fadp"  ;# Parse as an Fancy ADP
 	ns_param   map             "/*.svg"  ;# Parse as an ADP
 	ns_param   map             "/*.htm"  ;# Parse as an ADP
 	ns_param   map             "/*.csv"  ;# Parse as an ADP
@@ -143,7 +146,8 @@ ns_section "ns/server/${servername}/adp"
 
 # ADP custom parsers -- see adp.c
 ns_section "ns/server/${servername}/adp/parsers"
-	ns_param   adp             ".adp"    ;# adp is the default parser.
+	ns_param	adp		".adp"    ;# adp is the default parser.
+	ns_param	fancy	".fadp"
 
 ################################################################################
 # Access log
