@@ -53,3 +53,22 @@ openssl
 libssl-dev
 
 
+
+
+Mac OS X 
+--------
+
+PostgreSQL won't normally start on a stock Leopard installation because the
+shared memory requirements are bigger than the default OS X settings. To get it
+working, run the following two commands as root:
+
+# sysctl -w kern.sysv.shmall=65536
+# sysctl -w kern.sysv.shmmax=16777216
+
+Add the following lines to /etc/sysctl.conf (create it if it doesn't exist) if
+you want these settings to take effect at boot time:
+
+kern.sysv.shmall=65536
+kern.sysv.shmmax=16777216
+
+
