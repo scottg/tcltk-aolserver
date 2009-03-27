@@ -1,9 +1,10 @@
 #!/bin/bash
 
-if [ "$(id -un)" == "root" ]; then
-    echo "You cannot run $0 as root"
-    exit 1
-fi
+# XXX Running as root is needed to use dtruss / dtrace on Mac OS X
+#if [ "$(id -un)" == "root" ]; then
+#    echo "You cannot run $0 as root"
+#    return 1
+#fi
 
 #
 # Path setting.
@@ -34,12 +35,17 @@ else
 fi
 
 #
-# Owner and Group settings.
+# Owner and Group settings. 
 #
 
 export SITEDESC="=== NOT SET ==="
 export SITEOWNER=$(/usr/bin/id -un)
 export SITEGROUP=$(/usr/bin/id -gn)
+if [ "$(id -un)" == "root" ]; then
+	export SITEDESC="=== NOT SET ==="
+	export SITEOWNER=$(ls -la config.sh | tr -s ' '  | cut -f3 -d' ')
+	export SITEGROUP=$(ls -la config.sh | tr -s ' '  | cut -f4 -d' ')
+fi
 
 #
 # If BUILD_DEBUG is set to -f, nsd will start in the foreground. If set to
