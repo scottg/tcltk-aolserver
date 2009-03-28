@@ -100,7 +100,7 @@ LOOPBACK=127.0.0.1
 NONROUTABLE=192.168.
 export NS_ADDRESS=$(/sbin/ifconfig -a | awk '/(cast)/ { print $2 }' | cut -d':' -f2 | head -1)
 export NS_HOSTNAME=$(hostname)
-if [[ ! "$NS_ADDRESS" =~ "$NONROUTABLE" && ! "$NS_ADDRESS" =~ "$LOOPBACK" ]]; then
+if [[ "$NS_ADDRESS" =~ "$NONROUTABLE" && ! "$NS_ADDRESS" =~ "$LOOPBACK" ]]; then
 	export NS_ADDRESS=127.0.0.1
 	export NS_HOSTNAME=localhost
 fi
