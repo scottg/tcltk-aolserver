@@ -139,7 +139,7 @@ source paths.sh
 #
 
 export SOURCES="
-	tcl-8.5.5
+	tcl-8.5.18
 	tls-1.6
 	tcllib-1.11
 
