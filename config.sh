@@ -11,10 +11,16 @@
 #
 
 export SITEROOT=$PWD
+
+#
+# EXE is where everything is installed
+#
+
 export EXE=$SITEROOT/exe
 
 #
 # Set SITEPATH based on whether a site name was passed in the second argument.
+# If it wasn't then we used 'default' as the site name.
 #
 
 if [ -z "$2" ]; then
@@ -48,15 +54,14 @@ if [ "$(id -un)" == "root" ]; then
 fi
 
 #
-# If BUILD_DEBUG is set to -f, nsd will start in the foreground. If set to
-# blank, it will start as a daemon.
+# If BUILD_DEBUG is set to "yes", the build will be scripted and logged.
 #
 
 export BUILD_DEBUG="yes"
 
 #
-# If the DEBUG file exists, NS_DEBUG is set to -f so that nsd will start in the
-# foreground.
+# If the DEBUG file exists in the SITEROOT directory, NS_DEBUG is set to -f so
+# that nsd will start in the foreground.
 #
 
 export NS_DEBUG=""
