@@ -13,6 +13,43 @@
 export SITEROOT=$PWD
 
 #
+# The sources.sh file tells us what to build. It shouldn't be committed to the
+# repository, and if it doesn't exist, we'll create it here.
+#
+
+DEFAULT_SOURCES="
+	tcl-8.5.18
+	aolserver-3.5.11
+"
+
+# XXX will probably have to create separate 'build' files to handle differences
+# XXX between different versions of the same package, but that's for later.
+
+#tls-1.6
+#tcllib-1.11
+#postgresql-8.3.4
+#pgtcl-1.5
+#sqlite-3.6.6.2
+#aolserver-cvs
+#nspostgres-cvs
+#nsopenssl-cvs
+#nssqlite3-cvs
+
+if [ ! -f "$SITEROOT/sources.sh" ]; then
+	echo "Building the sources.sh file to tell us what to build"
+	echo "Modify this file to build the versions you want for each package"
+	echo "But DO NOT commit this file to the repository"
+
+	echo "# Don't commit this file to the repository" > $SITEROOT/sources.sh
+	echo "" >> $SITEROOT/sources.sh
+	echo "export SOURCES=\"" >> $SITEROOT/sources.sh
+	for SOURCE in $DEFAULT_SOURCES; do
+		echo "	$SOURCE" >> $SITEROOT/sources.sh
+	done
+	echo "\"" >> $SITEROOT/sources.sh	
+fi
+
+#
 # EXE is where everything is installed
 #
 
@@ -143,19 +180,4 @@ source paths.sh
 # Sources to Compile and Install
 #
 
-export SOURCES="
-	tcl-8.5.18
-	tls-1.6
-	tcllib-1.11
-
-	postgresql-8.3.4
-	pgtcl-1.5
-
-	sqlite-3.6.6.2
-
-	aolserver-cvs
-	nspostgres-cvs
-	nsopenssl-cvs
-	nssqlite3-cvs
-"
-
+source sources.sh

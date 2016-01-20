@@ -13,6 +13,21 @@ kit.
 
 Four step process:
 
+Create the sources.sh file in the top level directory and put in the versions
+of the packages you want to build. Make sure those sources are located in
+build/srcs as <NAME>-<VERSION>.tar.bz2 files. The sources.sh file is as follows:
+
+SOURCES="
+	tcl-8.5.18
+	aolserver-8.5.18
+"
+
+If you don't create the sources.sh file, the build/build.sh file will create
+one with specific versions of a few packages, and you can modify that file at
+any time and re-run the build process. 
+
+This is the build process:
+
 ./build/build.sh
 ./db start <sitename>
 ./db create <sitename>
